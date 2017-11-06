@@ -13,23 +13,24 @@
         <img id="image" src="" alt="cat image">
         <div id="clicks-admin"><h3 id="clicks"></h3>
         <button id="admin" type="button" name="admin">Admin</button></div>
+        <form id="form" action="index.html" method="post">
+          <div class="input">
+            <label for="">Name</label>
+            <input id="input-name" type="text" name="" value="">
+          </div>
+          <div class="input">
+            <label for="">ImgURL</label>
+            <input id="input-url" type="text" name="" value="">
+          </div>
+          <div class="input">
+            <label for="">#Clicks</label>
+            <input id="input-clicks" type="text" name="" value="">
+          </div>
+          <button id="cancel" type="button" name="cancel">Cancel</button>
+          <button id="save" type="button" name="save">Save</button>
+        </form>
       </div>
-      <form id="form" action="index.html" method="post">
-        <div class="input">
-          <label for="">Name</label>
-          <input id="input-name" type="text" name="" value="">
-        </div>
-        <div class="input">
-          <label for="">ImgURL</label>
-          <input id="input-url" type="text" name="" value="">
-        </div>
-        <div class="input">
-          <label for="">#Clicks</label>
-          <input id="input-clicks" type="text" name="" value="">
-        </div>
-        <button id="cancel" type="button" name="cancel">Cancel</button>
-        <button id="save" type="button" name="save">Save</button>
-      </form>
+
       <ul id="list"></ul>
     </div>
     <script src="js/app.js"></script>

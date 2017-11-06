@@ -62,15 +62,16 @@ var view = {
     this.imgElem.addEventListener('click', function(){
       controller.addClick();
     });
+    this.initForm();
     this.renderDisplay();
     this.renderList();
-    this.renderForm();
   },
   renderDisplay: function(){
     var currCat = controller.getCurrCat();
     this.nameElem.textContent = currCat.name;
     this.imgElem.src = currCat.image;
     this.clicksElem.textContent = 'clicks: ' + currCat.clicks;
+    this.renderForm();
   },
   renderList: function(){
     for(var i=0; i<this.cats.length; i++){
@@ -80,20 +81,21 @@ var view = {
       li.addEventListener('click', (function(cat){
         return function(){
           controller.setCurrCat(cat);
+          view.renderForm();
           view.renderDisplay();
         };
       })(this.cats[i]));
       this.listElem.appendChild(li);
     }
   },
-  renderForm: function(){
-    this.clearForm();
+  initForm: function(){
+    this.hideForm();
     this.adminElem.addEventListener('click', function(){
-      view.formElem.style.display = 'block';
+      view.formElem.style.visibility = 'visible';
+      view.renderForm();
     });
     this.cancelElem.addEventListener('click', function(){
-      view.clearForm();
-      view.formElem.style.display = 'none';
+      view.hideForm();
     });
     this.saveElem.addEventListener('click', function(){
       var nameStr = view.nameInElem.value;
@@ -108,14 +110,21 @@ var view = {
       if(clickCount)
         controller.setCatClickCount(clickCount);
       view.renderDisplay();
-      view.clearForm();
+      view.hideForm();
     });
+  },
+  renderForm: function(){
+    this.nameInElem.value = controller.getCurrCat().name;
+    this.imageInElem.value = controller.getCurrCat().image;
+    this.clicksInElem.value = controller.getCurrCat().clicks;
   },
   clearForm: function(){
     this.nameInElem.value = "";
     this.imageInElem.value = "";
     this.clicksInElem.value = "";
-    this.formElem.style.display = 'none';
+  },
+  hideForm: function(){
+    this.formElem.style.visibility = 'hidden';
   }
 };
 controller.init();
